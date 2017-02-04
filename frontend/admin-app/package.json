@@ -1,0 +1,15 @@
+{
+  "name": "admin-app",
+  "version": "1.0.0",
+  "description": "simple admin panel",
+  "main": "ng-admin-config.js",
+  "dependencies": {
+    "ng-admin": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

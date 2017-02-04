@@ -1,0 +1,8 @@
+{% block content %}{% endblock %}
+
+{% block footer %}		
+This message was sent by ExpertOnLive. Please do not reply to this mail. We do not keep track of incoming mails for this particular email.
+For any issues, please contact us at support@expertonlive.com
+{% endblock %}		
+
+copyright 2016 ExpertOnLive

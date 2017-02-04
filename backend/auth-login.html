@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	  <div>
+      <form method="POST" action="/api/users/auth/login">
+        <input type="text" name="email"/>
+        <input type="password" name="password" />
+        <input type="submit" value="Submit"/>
+      </form>
+	  </div>
+	  
+	   <ul>
+	     <li><a href="/users/auth/facebook">Login via Facebook</a></li>
+	     <li><a href="/users/auth/google">Login via Google</a></li>
+	     <li><a href="/users/auth/linkedin">Login via Linkedin</a></li>
+	   </ul>
+	</body>
+</html>

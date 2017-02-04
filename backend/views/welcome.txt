@@ -1,0 +1,12 @@
+{% extends 'mail-layout.txt' %}
+
+{% block content %}
+Welcome to {{appName}}, {{name|title}}!
+Thank you for joining {{appName}}. We hope you have a great time here. 
+
+Get started now!
+{{domain}}
+
+Cheers,
+Team {{appName}}
+{% endblock %}

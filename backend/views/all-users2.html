@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	  <title>{{appName}}</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1><a style="color: #2DA65E; text-decoration: none;" href="https://{{domain}}">{{appName}}</a></h1>
+    {{domain}}
+    {% if !users %}
+
+      <h2>No Users Found!</h2>
+
+    {% else %}
+
+      <h2>{{users.length}} User Found</h2>
+      <ul>
+      {% for user in users %}
+        <li><strong>{{user.name}}</strong> - <i>{{user.email}}</i></li>  
+      {% endfor  %}
+      </ul>
+
+    {% endif %}
+    
+
+	</body>
+</html>

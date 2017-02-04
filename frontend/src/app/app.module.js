@@ -1,0 +1,71 @@
+import angular from 'angular';
+import uiRouter from 'angular-ui-router';
+
+import loader from 'angular-loading-bar';
+import toaster from 'angularjs-toaster';
+
+import { commonModule } from './common/common.module'
+import { componentsModule } from './components/components.module'
+
+import { appComponent } from './app.component';
+
+import { InjectApiUrlInterceptor } from './app.interceptors';
+
+
+import 'angular-loading-bar/build/loading-bar.css'; 
+import 'angularjs-toaster/toaster.scss'; 
+
+import './app.scss';
+
+
+
+export const appModule = angular
+  .module('app', [
+
+    uiRouter,
+    loader,
+    toaster,
+
+    commonModule,
+    componentsModule
+  ])
+  .component('app', appComponent)
+  .constant('API_URL', 'http://localhost:3000/api')
+  .config(($locationProvider, $httpProvider) => {
+    'ngInject';
+
+    // Configure common http headers
+    // angular does not add it by default; needed by server to identify ajax requests.
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';  
+    
+    // enable cross domain calls from client. The server also needs to be 
+    // configured to handle cross domain calls.
+    $httpProvider.defaults.useXDomain = true;  
+    $httpProvider.defaults.withCredentials = true; 
+
+    // add interceptors
+    $httpProvider.interceptors.push(InjectApiUrlInterceptor);
+   
+    // remove hasbangs(!#) from urls. 
+    $locationProvider.html5Mode(true);
+
+  })
+  .run(($transitions, cfpLoadingBar, AuthService, $rootScope) => {
+    'ngInject';
+
+    // show a loader when a state transitions
+    $transitions.onStart({}, cfpLoadingBar.start);
+    $transitions.onSuccess({}, cfpLoadingBar.complete);
+
+    // on app bootstrap. i.e. whenever it loads or reloads, update the current 
+    // user(from server) & emit an event with the user data, so that any part 
+    // of app can listen & update the current user changes.
+    AuthService.updateUser()
+      .then(() => {
+        const user = AuthService.getUser();
+        console.log('user(run block): ', user);
+        $rootScope.$emit('user:update', user);
+      });
+
+  })
+  .name;

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		{% block header %}
+	  <h1><a style="color: #2DA65E; text-decoration: none;" href="https://{{domain}}">{{appName}}</a></h1>
+		{% endblock %}
+		
+		{% block content %}{% endblock %}
+
+		{% block footer %}		
+		<p style="background: #eee; font-size: 90%; padding: 5px; margin: 10px 0px; border-top: 1px solid #ddd;">
+			This message was sent by ExpertOnLive. Please do not reply to this mail. We do not keep track of incoming mails for this particular email.
+			For any issues, please contact us at support@expertonlive.com
+		</p>
+		{% endblock %}		
+		<p style="color: #777; font-size: 85%;"> &copy; 2016 ExpertOnLive</p>
+	</body>
+</html>

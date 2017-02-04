@@ -1,0 +1,10 @@
+dist
+node_modules
+.DS_Store
+.tmp
+.sass-cache
+*.sublime-*
+.idea
+.vscode
+npm-debug.log
+templates.js
