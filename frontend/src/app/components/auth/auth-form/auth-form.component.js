@@ -8,9 +8,9 @@ export const formComponent = {
   },
   templateUrl,
   controller: class FormComponent {
-    constructor($window, AuthService) {
+    constructor($window, authService) {
       'ngInject';
-      this.authService = AuthService;
+      this.authService = authService;
       this.$window = $window;
     }
     $onChanges(changes) {

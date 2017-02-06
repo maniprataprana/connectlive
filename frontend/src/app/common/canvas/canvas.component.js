@@ -4,10 +4,10 @@ export const canvasComponent = {
   templateUrl,
 
   controller: class CanvasComponent {
-    constructor(AuthService, $state, $rootScope, toaster) {
+    constructor(authService, $state, $rootScope, toaster) {
       'ngInject';
 
-      this.authService = AuthService;
+      this.authService = authService;
       this.$state = $state;
       this.toaster = toaster;
       this.user = null;

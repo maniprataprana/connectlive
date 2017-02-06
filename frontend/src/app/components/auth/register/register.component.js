@@ -3,10 +3,10 @@ import templateUrl from './register.html';
 export const registerComponent = {
   templateUrl,
   controller: class RegisterComponent {
-    constructor(AuthService, $state) {
+    constructor(authService, $state) {
       'ngInject';
 
-      this.authService = AuthService;
+      this.authService = authService;
       this.$state = $state;
     }
     $onInit() {

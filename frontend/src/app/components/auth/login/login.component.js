@@ -3,10 +3,10 @@ import templateUrl from './login.html';
 export const loginComponent = {
   templateUrl,
   controller: class LoginComponent {
-    constructor(AuthService, $state) {
+    constructor(authService, $state) {
       'ngInject';
 
-      this.authService = AuthService;
+      this.authService = authService;
       this.$state = $state;
     }
     $onInit() {

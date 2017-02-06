@@ -27,7 +27,7 @@ export const authModule = angular
         component: 'auth',
       });
   })
-  .run(($transitions, $state, AuthService) => {
+  .run(($transitions, $state, authService) => {
     'ngInject';
 
     // $transitions.onStart({
@@ -44,5 +44,5 @@ export const authModule = angular
     // });
  
  })
-  .service('AuthService', AuthService)
+  .service('authService', AuthService)
   .name;

@@ -54,7 +54,7 @@ export const appModule = angular
     $locationProvider.html5Mode(true);
 
   })
-  .run(($transitions, cfpLoadingBar, AuthService, $rootScope) => {
+  .run(($transitions, cfpLoadingBar, authService, $rootScope) => {
     'ngInject';
 
     // show a loader when a state transitions
@@ -64,9 +64,9 @@ export const appModule = angular
     // on app bootstrap. i.e. whenever it loads or reloads, update the current 
     // user(from server) & emit an event with the user data, so that any part 
     // of app can listen & update the current user changes.
-    AuthService.updateUser()
+    authService.updateUser()
       .then(() => {
-        const user = AuthService.getUser();
+        const user = authService.getUser();
         console.log('user(run block): ', user);
         $rootScope.$emit('user:update', user);
       });
