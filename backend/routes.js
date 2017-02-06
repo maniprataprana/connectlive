@@ -1,4 +1,5 @@
 var users = require('./controllers/users');
+var clientLogs = require('./controllers/clientLogs');
 
 var path = require('path');
 var express = require('express');
@@ -127,7 +128,17 @@ module.exports = function (app, passport) {
     users.handleAuthLogin('linkedin', req, res, next);
   });
 
-    
-    
-    
+  //
+  // admin routes: clientLogs
+  //    
+  adminRouter.get('/client-logs', clientLogs.list);
+  adminRouter.get('/client-logs/:id', clientLogs.get);
+  adminRouter.delete('/client-logs/:id', clientLogs.destroy);
+
+  //
+  // public routes: clientLogs
+  //
+  apiRouter.post('/client-logs', clientLogs.create);
+
+
 };

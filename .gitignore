@@ -8,3 +8,4 @@ node_modules
 .vscode
 npm-debug.log
 templates.js
+.env.json

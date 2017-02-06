@@ -25,6 +25,8 @@ export const canvasComponent = {
         .logout()
         .then(() => this.$state.go('canvas'));
     }
+
   }
+
 
 };

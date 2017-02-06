@@ -26,14 +26,16 @@ app.config(function (NgAdminConfigurationProvider) {
   // the API endpoint for user will be http://localhost:3000/users/:id
   // you can optionally customize the identifier used in the api ('id' by default)
 
-
-  var user = nga.entity('users');
+  var user = nga.entity('users')
+    .identifier(nga.field('_id'));
   
-  user.identifier(nga.field('_id'));
+  var clientLog = nga.entity('client-logs')
+    .identifier(nga.field('_id'));
 
   // set the application entities
   app
-    .addEntity(user);
+    .addEntity(user)
+    .addEntity(clientLog);
   
   // function truncate(value) {
   //   if (!value) return '';
@@ -96,6 +98,40 @@ app.config(function (NgAdminConfigurationProvider) {
     ]);
   // user.deletionView()
   //   .title('Delete a user');
+
+
+  /**
+   * clientLog views
+   */
+  clientLog.listView()
+    // .title('All users') // default title is "List of users"
+    .description('Client logs to aid in dubugging')
+    .perPage(30)
+    // .infinitePagination(true)
+    .fields([
+      nga.field('timestamp', 'date').format('medium').isDetailLink(true),
+      nga.field('type'),
+      nga.field('userAgent'),
+      nga.field('location'),
+    ]);
+    // .filters([
+
+    // ]);
+
+  clientLog.editionView()
+    // .title('Editing User {{ entry.values.name }}')
+    .fields([
+      nga.field('_id').editable(false),
+      nga.field('type').editable(false),
+      nga.field('userAgent').editable(false),
+      nga.field('location').editable(false),
+      nga.field('timestamp', 'date').format('medium').editable(false),
+      nga.field('details', 'json').editable(false),
+    ]);
+
+  clientLog.deletionView()
+    .title('Delete a client log');
+
 
   nga.configure(app);
 

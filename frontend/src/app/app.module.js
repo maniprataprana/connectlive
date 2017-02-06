@@ -1,22 +1,24 @@
 import angular from 'angular';
-import uiRouter from 'angular-ui-router';
 
+// import 3rd party modules
+import uiRouter from 'angular-ui-router';
 import loader from 'angular-loading-bar';
 import toaster from 'angularjs-toaster';
 
-import { commonModule } from './common/common.module'
-import { componentsModule } from './components/components.module'
+// import app. modules
+import { commonModule } from './common/common.module';
+import { componentsModule } from './components/components.module';
 
+// import components
 import { appComponent } from './app.component';
 
+// import interceptors
 import { InjectApiUrlInterceptor } from './app.interceptors';
 
-
+// import styles
 import 'angular-loading-bar/build/loading-bar.css'; 
-import 'angularjs-toaster/toaster.scss'; 
-
+import 'angularjs-toaster/toaster.css'; 
 import './app.scss';
-
 
 
 export const appModule = angular
@@ -31,6 +33,8 @@ export const appModule = angular
   ])
   .component('app', appComponent)
   .constant('API_URL', 'http://localhost:3000/api')
+  // where to log client errors & exceptions
+  .constant('REMOTE_LOGGING_URL', 'http://localhost:3000/api/client-logs')
   .config(($locationProvider, $httpProvider) => {
     'ngInject';
 
@@ -45,7 +49,7 @@ export const appModule = angular
 
     // add interceptors
     $httpProvider.interceptors.push(InjectApiUrlInterceptor);
-   
+
     // remove hasbangs(!#) from urls. 
     $locationProvider.html5Mode(true);
 

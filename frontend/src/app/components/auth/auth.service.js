@@ -70,7 +70,7 @@ export class AuthService {
       .catch((error) => {
         this.logError(error);
         if(error.status === 400) {
-          this.toaster.pop('error', 'Login Error', data.error.message);
+          this.toaster.pop('error', 'Signup Error', error.data.message);
         } else {
           this.notifyServerError();
         }

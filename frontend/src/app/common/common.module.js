@@ -14,5 +14,5 @@ export const commonModule = angular
         url: '/',
         redirectTo: 'canvas'
       });
-  })  
+  }) 
   .name;
