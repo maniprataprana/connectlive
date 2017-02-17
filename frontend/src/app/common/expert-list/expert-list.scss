@@ -1,0 +1,104 @@
+@import 'settings';
+
+.expert {
+  font-size: 0.9rem;
+
+  @include breakpoint(medium only) {
+    font-size: 0.8rem;
+  }
+  @include breakpoint(small only) {
+    font-size: 0.8rem;
+  }
+
+  &__list {
+    list-style: none;
+    // border: 1px solid red;
+    margin: 0;
+    padding: 0;
+  }
+  &__detail {
+    position: relative;
+    border: 1px solid #ddd;
+    height: 24em;
+    width: 18em;
+    box-shadow: 0 1px 7px rgba(0,0,0,.05);  
+    background: #fff;
+    margin: auto;
+  }
+
+  &__detail-head {
+    background: #fafafa;
+    // height: 80px;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1em 0.5em 1.5em 0.5em;
+  }
+  &__detail-image {
+    float: left;
+    display: block;
+    margin: 0em 0.8em 0.3em 0.2em;
+  }
+  &__detail-name {
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 1.3em;
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 0.03em;
+  }
+  &__detail-bio {
+    font-size: 0.95em;
+  }
+
+  &__detail-rating {
+    position: relative;
+    border: 1px solid #ccc;
+    top: -1em;
+    left: 9em;
+    text-align: center;
+    // padding-right: 0.5em;
+    width: 9.5em;
+    border-radius: 1em;
+    background: #fff;
+    font-size: 0.9em;
+  }
+  &__detail-tags {
+    padding: 0.5em;
+    margin: 0;
+    height: 9em;
+    li {
+    list-style: none;
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin: 0.4em 0.4em;
+    border: 1px solid #ddd;
+    border-radius: 1em;
+    color: #666;
+    }
+  }
+
+  &__detail-cta {
+    position: absolute;
+    bottom: 0;
+    left: 0.5em;
+    width: 90%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 1.3em;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    a {
+      display: inline-block;
+      padding: 0.2em 5em;
+      background: $primary-color;
+      color: #fff!important;
+      font-weight: 600;
+      font-size: 0.8em;
+      border: 1px solid scale-color($primary-color, $lightness: -10%);
+      border-radius: 0.1em;
+      &:hover {
+        background:  scale-color($primary-color, $lightness: 10%);
+      }
+    }
+  }
+
+}

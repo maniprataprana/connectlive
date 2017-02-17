@@ -1,5 +1,5 @@
 import templateUrl from  './app.html';
 
-export const appComponent = {
+export const AppComponent = {
   templateUrl
 }  

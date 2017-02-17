@@ -1,8 +1,8 @@
 import templateUrl from './canvas.html';
 
-export const canvasComponent = {
+export const CanvasComponent = {
   templateUrl,
-
+  
   controller: class CanvasComponent {
     constructor(authService, $state, $rootScope, toaster) {
       'ngInject';
@@ -10,11 +10,10 @@ export const canvasComponent = {
       this.authService = authService;
       this.$state = $state;
       this.toaster = toaster;
-      this.user = null;
+      this.user = authService.getUser();
 
-      $rootScope.$on('user:update', (event, user) => {
-        // console.log('on user:update :', user);
-        this.user = user;
+      this.unRegisterUpdateFunction = $rootScope.$on('user:update', () => {
+        this.user = this.authService.getUser();
         
       });
     }
@@ -23,9 +22,14 @@ export const canvasComponent = {
       // this.toaster.pop('success', "title", "text");
       return this.authService
         .logout()
-        .then(() => this.$state.go('canvas'));
+        .then(() => this.$state.go('canvas.homepage'));
     }
 
+    $onDestroy() {
+      // clean up event handlers
+      this.unRegisterUpdateFunction();
+      // console.log('destroying canvas..');
+    }
   }
 
 

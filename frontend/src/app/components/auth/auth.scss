@@ -1,0 +1,59 @@
+@import 'settings';
+
+.auth {
+  font-size: 1rem;
+
+  &__header {
+    margin-top: 3em;
+    text-align: center;
+    // font-weight: 600;
+    // font-size: 3.1em;
+    // color: #444; 
+    @include breakpoint(small only) {
+      margin-top: 1.5em;
+    }
+  }
+
+
+  &__help-text {
+    text-align: center;
+    color: #aaa;
+  }
+  &__divider {
+    // margin: 0;
+  }
+
+  &__info {
+    color: #999;
+    font-size: 0.75em;
+    &--big {
+      font-weight: 500;
+      font-size: 0.9em;
+    }
+    &--move-up {
+      margin-top: -0.7em;
+    }
+    &--move-down {
+      margin-top: 1em;
+    }
+  }
+  
+  &__link {
+    color: #777;
+    text-decoration: underline;    
+  }
+
+  &__social {
+    margin: 2em 0; 
+  }
+
+  &__icon {
+    font-size: 4em!important;
+
+    &--facebook { color:#3B5998; }
+    &--google { color: #dd4b39; }
+    &--linkedin { color: #007bb6; }
+  
+  }
+
+}

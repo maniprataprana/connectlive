@@ -1,7 +1,38 @@
-<div class="header">
-  <ul class="header__info">
-    <li>{{::$ctrl.user.name}}</li>
-    <li><img ng-src="{{::$ctrl.user.image}}"></li>
-    <li><a href="" ng-click="$ctrl.onLogout();">Logout</a></li>
-  </ul>
-</div>
+<div class="top-bar header row expanded">
+  <div class="top-bar-title logo small-6 columns">
+    <a ng-href="/" class="logo__link">Expert<em class="logo__highlight">On</em>Live</a>
+  </div>
+  <div class="small-6 columns">
+    <!--<div class="top-bar-left">category</div>-->
+    <div class="top-bar-right"> 
+      <ul class="menu float-right">
+        <li>
+           <a class="header__action-link header__search-cue" 
+            href="/search">
+             <i class="fa fa-search"></i>
+           </a>
+        </li>
+        <li ng-if="!$ctrl.user.name">
+          <a ui-sref="auth" class="header__action-link">
+            <i class="fa fa-user-o" aria-hidden="true"></i>Sign in
+          </a>
+        </li>
+        <li ng-if="$ctrl.user.name">
+          <a href="" class="header__action-link">
+            <img ng-src="{{$ctrl.user.image}}" alt="{{$ctrl.user.name}}" user-avatar>
+          </a>
+          <popup-box left="-100" cue="right">
+            <ul class="popup-box__menu">
+              <li> <a href="">Dashboard</a></li>
+              <li> <a ui-sref="auth">Auth</a></li>
+              <li> <a href="" ng-click="$ctrl.onLogout();">Logout</a></li>
+            </ul>
+          </popup-box>
+        </li>
+
+      </ul>
+
+
+    </div> <!-- end of top-bar-right -->
+  </div>
+</div> <!-- end of top-bar/header -->

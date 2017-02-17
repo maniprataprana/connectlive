@@ -1,0 +1,5 @@
+<div ng-if="$ctrl.form[$ctrl.field].$touched" ng-messages="$ctrl.fieldError" class="form__error">
+  <div ng-message="required">{{$ctrl.field}} is required.</div>
+  <div ng-message="{{$ctrl.field}}">{{$ctrl.field}} is invalid.</div>
+  <div ng-message="minlength">minimum 6 characters required.</div>
+</div>

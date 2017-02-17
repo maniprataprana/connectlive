@@ -1,43 +1,58 @@
 import angular from 'angular';
 
+import ngMessage from 'angular-messages';
+import ngSanitize from 'angular-sanitize';
+
 // import 3rd party modules
 import uiRouter from 'angular-ui-router';
 import loader from 'angular-loading-bar';
 import toaster from 'angularjs-toaster';
 
 // import app. modules
-import { commonModule } from './common/common.module';
-import { componentsModule } from './components/components.module';
+import { CommonModule } from './common/common.module';
+import { ComponentsModule } from './components/components.module';
 
 // import components
-import { appComponent } from './app.component';
+import { AppComponent } from './app.component';
 
 // import interceptors
 import { InjectApiUrlInterceptor } from './app.interceptors';
 
+import 'script-loader!jquery'
+import 'script-loader!what-input'
+import 'script-loader!foundation-sites';
+
 // import styles
 import 'angular-loading-bar/build/loading-bar.css'; 
 import 'angularjs-toaster/toaster.css'; 
+
 import './app.scss';
 
 
-export const appModule = angular
-  .module('app', [
+$(document).ready(function ($) {
+  $(document).foundation();
+});
 
+export const AppModule = angular
+  .module('app', [
+    ngSanitize,
+    ngMessage,
     uiRouter,
     loader,
     toaster,
 
-    commonModule,
-    componentsModule
+    CommonModule,
+    ComponentsModule
   ])
-  .component('app', appComponent)
+  .component('app', AppComponent)
+  
   .constant('API_URL', 'http://localhost:3000/api')
   // where to log client errors & exceptions
   .constant('REMOTE_LOGGING_URL', 'http://localhost:3000/api/client-logs')
-  .config(($locationProvider, $httpProvider) => {
+  
+  .config(($locationProvider, $httpProvider)=> {
     'ngInject';
-
+    
     // Configure common http headers
     // angular does not add it by default; needed by server to identify ajax requests.
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';  
@@ -54,6 +69,7 @@ export const appModule = angular
     $locationProvider.html5Mode(true);
 
   })
+  
   .run(($transitions, cfpLoadingBar, authService, $rootScope) => {
     'ngInject';
 
@@ -68,7 +84,7 @@ export const appModule = angular
       .then(() => {
         const user = authService.getUser();
         console.log('user(run block): ', user);
-        $rootScope.$emit('user:update', user);
+        $rootScope.$emit('user:update');
       });
 
   })

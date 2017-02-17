@@ -1,0 +1,57 @@
+@import 'settings';
+
+.homepage {
+  font-size: 1rem;
+  
+  &__pitch-wrapper {
+    // height: 300px;
+    background: #fff; 
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+  &__pitch-visual {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    // border:2px solid #ddd;
+    margin: auto;
+    background: $primary-color;
+  }
+  &__pitch-text {
+    font-weight: 100;
+    font-size: 1.2em;
+    // border: 1px solid;
+    text-align: center;
+    margin-top: 0.2em;
+    @include breakpoint(small only) {
+      font-size: 0.95em;
+    }
+
+  }
+
+  &__pitch-icon {
+    font-size: 3.5em!important;
+    color: #fff;
+    padding: 0.2em 0.2em 0.2em 0.28em;
+  }
+
+  &__title {
+    letter-spacing: 0.04em;
+    font-family: "LogoFont";
+    font-size: 2em;
+    color: #444;
+    // border-bottom: 2px solid #ccc;
+    // padding: 0.5em 1em;
+    // margin: 0 1em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  &__listing {
+    margin-top: 1em;
+    // margin-bottom: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #f6f6f6;
+    border-top: 1px solid #ddd; 
+  }
+}

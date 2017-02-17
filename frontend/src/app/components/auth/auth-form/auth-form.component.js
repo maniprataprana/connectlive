@@ -4,6 +4,7 @@ export const formComponent = {
   bindings: {
     user: '<',
     button: '@',
+    action: '@',
     onSubmit: '&',
   },
   templateUrl,

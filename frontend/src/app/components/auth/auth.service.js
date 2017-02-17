@@ -8,12 +8,10 @@ export class AuthService {
     this.$location = $location;
     this.API_URL = API_URL;
     this.toaster = toaster;
-
     this.user = null;
 
-
   }
-
+  
   notifyServerError() {
     const message = 'OOPS! Try after some time!'
     this.toaster.pop('error', 'Server Error', message);
@@ -36,7 +34,7 @@ export class AuthService {
   }
 
   updateUser() {
-    return this.$http.get('/currentuser')
+    return this.$http.get('/users/currentuser')
     .then(({data})=> this.storeUser(data.user))   
     .catch((error) => this.logError(error));
   }

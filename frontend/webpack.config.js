@@ -1,7 +1,7 @@
 const cleanPlugin = require('clean-webpack-plugin');
 const copyPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const autoprefixer = require('autoprefixer');
 
 const root = `${__dirname}/src`;
 const dist = `${__dirname}/dist`;
@@ -10,11 +10,9 @@ const paths = {
   styles: `${root}/styles`,
   static: {
     index: `${root}/index.html`,
-    images: `${root}/images/**/*`,
+    images: `${root}/images`
   },
 };
-
-console.log('dist: ', dist);
 
 // Plugins
 const prep = {
@@ -26,7 +24,7 @@ const prep = {
   }, {
     from: paths.static.images,
     to: 'images/',
-    flatten: true,
+    // flatten: true,
   }]),
 };
 
@@ -63,6 +61,14 @@ const sass = {
         options: {
           sourceMap: true,
           includePaths: [paths.styles],
+        }
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: function() {
+            return [autoprefixer({browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']})];
+          }
         }
       },
       {
@@ -117,12 +123,14 @@ const config = {
     filename: 'js/app.[name].js',
   },
   devServer: {
+    contentBase: `${dist}/`,
     inline: true,
     https: false,
     open: true,
     port: 8080,
     historyApiFallback: true,
-    // contentBase: '${dist}/'
+    progress: true, // show status of my build
+    colors: true
   },
 };
 

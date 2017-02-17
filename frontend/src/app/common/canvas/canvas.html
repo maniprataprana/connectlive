@@ -1,5 +1,5 @@
-<div class="canvas">
-  <app-header user="$ctrl.user" on-logout="$ctrl.logout();"></app-header>
-  I am the main Canvas!
+<div class="canvas" ng-cloak>
+  <app-header user="$ctrl.user" on-logout="$ctrl.logout();"></app-header>  
   <div ui-view></div>
+  <app-footer></app-footer>
 </div>

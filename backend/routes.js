@@ -73,6 +73,15 @@ module.exports = function (app, passport) {
   app.get('/testmail', users.testMail);  
   app.get('/all-users', users.allUsers);
   
+
+  /**
+   * ========================================================================
+   * 
+   * ROUTE DEFINITION FOR USERS
+   * 
+   * ========================================================================
+   */
+
   //
   // admin routes: User
   //
@@ -84,13 +93,15 @@ module.exports = function (app, passport) {
   //
   // public routes: User
   //
+
+  apiRouter.get('/users/currentuser', users.currentUser);
+
   apiRouter.post('/users', storeAuthRedirect, users.createAndLogin);  
   apiRouter.get('/users', users.list);  
   apiRouter.get('/users/:id', users.get); 
   apiRouter.put('users/:id', users.update);
-     
+
   apiRouter.get('/users/auth/logout', users.logout);
-  apiRouter.get('/currentuser', users.currentUser);
 
   //
   // authentication routes
@@ -128,17 +139,26 @@ module.exports = function (app, passport) {
     users.handleAuthLogin('linkedin', req, res, next);
   });
 
+ 
+  /**
+   * ========================================================================
+   * 
+   * ROUTE DEFINITION FOR CLIENT LOGS
+   * 
+   * ========================================================================
+   */
+ 
   //
-  // admin routes: clientLogs
+  // admin routes
   //    
   adminRouter.get('/client-logs', clientLogs.list);
   adminRouter.get('/client-logs/:id', clientLogs.get);
   adminRouter.delete('/client-logs/:id', clientLogs.destroy);
 
   //
-  // public routes: clientLogs
+  // api routes
   //
   apiRouter.post('/client-logs', clientLogs.create);
 
 
-};
+}; // end of module.exports

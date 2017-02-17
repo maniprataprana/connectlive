@@ -1,18 +1,34 @@
-import { headerModule } from './header/header.module'
-import { canvasModule } from './canvas/canvas.module'
+import { HeaderModule } from './header/header.module'
+import { FooterModule } from './footer/footer.module'
+import { CanvasModule } from './canvas/canvas.module'
+import { SearchModule } from './search/search.module';
+import { ExpertListModule } from './expert-list/expert-list.module';
 
-export const commonModule = angular
+import { HomepageModule } from './homepage/homepage.module';
+import { ExpertPageModule } from './expertpage/expertpage.module';
+
+import {ExpertService} from './expert.service';
+
+export const CommonModule = angular
   .module('common', [
-    headerModule,
-    canvasModule
+    HeaderModule,
+    FooterModule,
+    CanvasModule,
+    SearchModule,
+    ExpertListModule,
+    HomepageModule,
+    ExpertPageModule,
+
   ])
+  .service('expertService', ExpertService)
   .config(($stateProvider) => {
     'ngInject';
     
+
     $stateProvider
-      .state('home', {
-        url: '/',
-        redirectTo: 'canvas'
+      .state('app', {
+        redirectTo: '/'
       });
+
   }) 
   .name;

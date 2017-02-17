@@ -1,7 +1,7 @@
-import { headerComponent } from './header.component';
+import { HeaderComponent } from './header.component';
 import './header.scss';
 
-export const headerModule = angular
+export const HeaderModule = angular
   .module('common.header', [])
-  .component('appHeader', headerComponent)
+  .component('appHeader', HeaderComponent)
   .name;

@@ -1,0 +1,25 @@
+<div class="search">
+  <div class="search__box row column small-11 medium-11 large-11">
+    <input type="search" class="search__input" 
+      placeholder="Search For Experts..."
+      name="search"
+      ng-model="$ctrl.searchText"
+      ng-change="$ctrl.search();"
+      ng-model-options="{
+        'updateOn': 'default blur',
+        'debounce': {
+          'default': 250,
+          'blur': 0
+        }
+      }" app-search-focus>
+
+  </div>
+
+
+  <ul class="search__list">
+    <expert-list list="$ctrl.expertList"></expert-list>
+  </ul>
+
+
+
+</div>

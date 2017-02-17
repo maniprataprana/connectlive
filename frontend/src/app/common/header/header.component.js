@@ -1,6 +1,6 @@
 import templateUrl from './header.html';
 
-export const headerComponent = {
+export const HeaderComponent = {
   
   bindings: {
     user: '<',
@@ -11,8 +11,10 @@ export const headerComponent = {
 
   controller: class HeaderComponent {
     
-    constructor() {
+    constructor($location) {
       'ngInject';
+      this.currentUrl = $location.url();
+      console.log(this.currentUrl);
     }
 
     $onChanges(changes) {
@@ -22,6 +24,7 @@ export const headerComponent = {
       }     
     }
   
+
   }
 
 };

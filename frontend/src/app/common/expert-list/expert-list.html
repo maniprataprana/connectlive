@@ -1,0 +1,32 @@
+<div class="expert">
+  <ul class="expert__list row small-up-1 medium-up-2 large-up-3">
+    <li class="column column-block" ng-repeat="expert in $ctrl.list">
+      <div class="expert__detail">
+        
+        <div class="expert__detail-head">
+          <span class="expert__detail-image">
+            <img ng-src="{{expert.image}}" alt="" user-avatar size="medium">
+          </span>          
+          <span class="expert__detail-name">{{expert.name}}</span>
+          <span class="expert__detail-bio">{{expert.smallBio}}</span>
+        </div>
+
+        <div class="expert__detail-rating">
+          <show-rating rating="{{expert.rating}}"></show-rating> 
+          <span>({{expert.reviews}})</span>
+        </div>
+        
+        <ul class="expert__detail-tags">
+          <li ng-repeat="tag in expert.tags">{{tag}}</li>
+        </ul>
+
+        <div class="expert__detail-cta">
+          <a class="" href="">Book</a>
+        </div>
+      
+      </div>
+
+
+    </li>
+  </ul>
+</div>

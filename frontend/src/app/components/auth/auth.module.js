@@ -38,7 +38,7 @@ export const authModule = angular
     //     .catch(() => $state.target('auth.login'));
     // });
     // $transitions.onStart({
-    //   to: 'auth.*',
+    //   to: 'auth.**',
     // }, () => {
     //   if (AuthService.isAuthenticated()) return $state.target('dashboard');
     // });

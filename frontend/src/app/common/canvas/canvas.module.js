@@ -1,9 +1,9 @@
-import { canvasComponent } from './canvas.component';
+import { CanvasComponent } from './canvas.component';
 import './canvas.scss';
 
-export const canvasModule = angular
+export const CanvasModule = angular
   .module('common.canvas', [])
-  .component('appCanvas', canvasComponent)
+  .component('appCanvas', CanvasComponent)
   .config(($stateProvider) => {
     'ngInject';
     

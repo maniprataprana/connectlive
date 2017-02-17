@@ -1,30 +1,119 @@
-<form name="authForm" novalidate ng-submit="$ctrl.submitForm();">
-  <label>
-    <input
-      type="email"
-      name="email"
-      required="required"
-      placeholder="Enter your email"
-      ng-model="$ctrl.user.email">
-  </label>
-  <label>
-    <input
-      type="password"
-      name="password"
-      required="required"
-      placeholder="Enter your password"
-      ng-model="$ctrl.user.password">
-  </label>
-  <div class="auth-button">
-    <button type="submit" ng-disabled="authForm.$invalid">
-      {{ $ctrl.button }}
-    </button>
-  </div>
+<div class="row">
+  <div class="small-11 medium-4 column small-centered"> 
+    
+    <div class="row">
+      <div class="small-12 columns auth__header logo logo--big">
+        <a ng-href="/" class="logo__link">Expert<em class="logo__highlight">On</em>Live</a>
+      </div>     
+    </div>
 
-</form>
+    <form name="authForm" class="form"
+      novalidate 
+      ng-submit="$ctrl.submitForm();">
+      
+      <div class="row">
+        <div class="small-12 column">
+          <!--<label>Email</label>-->
+          <input
+            class="form__input--normalize"
+            type="email"
+            name="email"
+            required="required"
+            placeholder="Email"
+            ng-model="$ctrl.user.email">
+            <form-error-message 
+              form="authForm"
+              field="email" 
+              field-error="authForm.email.$error">
+            </form-error-message>
+        </div>
+      </div>
 
-<ul>
-  <li><a href="" ng-click="$ctrl.goAndAuthenticate('facebook')">facebook</a></li>
-  <li><a href="" ng-click="$ctrl.goAndAuthenticate('google')">google</a></li>
-  <li><a href="" ng-click="$ctrl.goAndAuthenticate('linkedin')">linkedin</a></li>
-</ul>
+      <div class="row">
+        <div class="small-12 column">
+          <!--<label>Password</label>-->
+          <input
+            class="form__input--normalize"
+            type="password"
+            name="password"
+            required="required"
+            minlength="6"
+            placeholder="Password"
+            ng-model="$ctrl.user.password">
+            <form-error-message 
+              form="authForm"
+              field="password" 
+              field-error="authForm.password.$error">
+            </form-error-message>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="small-12 column text-center">
+          <button 
+            type="submit" 
+            class="button button--submit button--fullwidth">
+              {{$ctrl.button}}
+          </button>
+          <div class="text-right auth__info auth__info--move-up" ng-if="$ctrl.action==='login'">
+            <a href="" class="auth__link">Forgot Password?</a>
+          </div>
+          <div class=" text-center  auth__info auth__info--move-up" ng-if="$ctrl.action==='register'">
+          By clicking the button, you agree to our <a href="" class="auth__link">Terms of Use</a>
+        </div>         
+        </div>
+      </div>
+
+
+    </form>
+
+    <p ng-if="$ctrl.action==='login'" class="text-center auth__info auth__info--big auth__info--move-down">
+      <a ui-sref="auth.register" class="auth__link">Don't have an account. Signup!</a>
+    </p>
+    <p ng-if="$ctrl.action==='register'" class="text-center auth__info auth__info--big auth__info--move-down">
+      <a ui-sref="auth.login" class="auth__link">Already have an account? Login!</a>
+    </p>
+
+    <hr>
+    <p class="auth__help-text">Or connect with</p>
+    <div class="auth__social row">
+      <div class="small-10 medium-10 large-10 column small-centered">
+      
+        <div class="row">
+          <div class="small-4 column auth__info">
+            <a class="auth__link"
+                href="" ng-click="$ctrl.goAndAuthenticate('facebook')">
+                <i class="fa fa-facebook-square auth__icon auth__icon--facebook"></i>
+                <br><span>Facebook</span>
+            </a>
+          </div>
+          <div class="small-4 column auth__info">
+            <a class="auth__link"
+                href="" ng-click="$ctrl.goAndAuthenticate('google')">
+                <i class="fa fa-google-plus-square auth__icon auth__icon--google"></i>
+                <br><span>Google</span>
+            </a>
+          </div>
+
+          <div class="small-4 column auth__info">
+            <a class="auth__link" 
+                href="" 
+                ng-click="$ctrl.goAndAuthenticate('linkedin')">
+                <i class="fa fa-linkedin-square auth__icon auth__icon--linkedin"></i>
+                <br><span>Linkedin</span>
+            </a>
+
+          </div>
+          
+        </div> 
+
+      </div>
+    </div> <!-- end of auth links -->
+
+  </div> <!-- end of main enclosing column -->
+</div> <!-- end of main enclosing row -->
+
+
+
+

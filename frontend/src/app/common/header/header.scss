@@ -1,11 +1,23 @@
-.header {
-  height: 2rem;
-  width: 100%;
-  border-bottom: 1px solid #ddd;
+@import "settings"; 
+.header{
+  font-size: 1rem;
+  border-bottom: 1px solid rgb(238, 238, 238);
 
-  &__info li{
-    // display: inline;;
-
+  &__action-link {
+    color: #696969;
+    // line-height: 3em;
+    font-weight: 600;
+    display: inline-block; 
+    padding: 0.5em 0.4em!important;           
   }
-}
 
+  &__search-cue {
+    font-size: 1.5em;
+    color: $primary-color;
+  }
+
+  &--icon {
+    vertical-align: top;
+  }
+
+}

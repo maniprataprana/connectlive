@@ -1,0 +1,29 @@
+@import 'settings';
+
+.search {
+  font-size: 1rem;
+
+  @include breakpoint(medium only) {
+    font-size: 0.8rem;
+  }
+  @include breakpoint(small only) {
+    font-size: 0.6rem;
+  }
+
+  &__box {
+    border-bottom: 1px solid #999;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    input {
+      border: none!important;
+      box-shadow: none!important;   
+      margin: 0;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      font-size: 2em;
+      color: #333;
+    }
+
+  }
+
+}
