@@ -1,63 +1,77 @@
+/**
+ *	Module dependencies 
+ */
 
-var crypto = require('crypto');
-var mongoose = require('mongoose');
+const crypto = require('crypto');
+const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-
+// define regexes
 var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
 var usernameRegex = /^[a-z0-9-._]+$/;
 
-var photoTypes = 'uploaded facebook google linkedin'.split(' ');
+// define enum types
+var photoTypes = ['uploaded', 'facebook', 'google', 'linkedin'];
 var roleTypes = ['admin', 'expert'];
+var availabilityFormatTypes = ['dayRange', 'singleDay', 'date'];
 
-var userSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
-    required: 'Name is required', 
-    trim: true 
-  },
-  username: {
-    type: String, 
-    trim: true, 
-    lowercase: true,
+var userSchema = new Schema({
+  name: { type: String, required: 'Name is required', trim: true },
+  username: { 
+    type: String, trim: true, lowercase: true,
     match: [usernameRegex, 'Enter  a valid username']
   },
 	email: { 
-		type: String, 
-    trim: true, 
+    type: String, trim: true, 
 		match: [emailRegex, 'Enter a valid Email']
 	},
-	isEmailVerified: { 
-    type: Boolean, 
-    default: false 
-  },  
+	isEmailVerified: { type: Boolean, default: false },  
 
   passwordSalt: String,
   passwordHash: String,
   
-  roles: [{
-    type: String, 
-    enum: roleTypes
-  }], // ['admin', 'expert', '..']
+  roles: [{ type: String, enum: roleTypes }], // ['admin', 'expert', '..']
   
   uploadedPhoto: String,
   
   displayPhoto: {
-    type: { 
-      type: String, 
-      enum: photoTypes 
-    },
+    type: { type: String, enum: photoTypes },
     photo: String
   },
   
-  isActive: { 
-    type: Boolean, 
-    default: true 
-  },
+  isActive: { type: Boolean,  default: true },
   
   facebook: {},
   google: {},
   linkedin: {},
   
+  // expert's profile
+  expertProfile: {
+    smallBio: String,
+    about: String,
+    tags: [String],
+    location: String,
+    languages: String,
+    linkedin: String,
+    verifyStatus: { type: Boolean, default: false },
+    isAvailable: { type: Boolean, default: true },
+    // requestLimit: Number, // take user requests only upto a limit at a time. 
+    availability: [{
+      format: { 
+        type: String, enum: availabilityFormatTypes, 
+        required: 'Please specify the format' 
+      },
+      startDay: String,
+      endDay: String,
+      day: String,
+      date: Date,
+      fromTime: String,
+      toTime: String,
+    }],
+    rating: Number,
+    reviews: Number, 
+ },
+
 }, {
   // overriding default timestamp fields
   timestamps: {
@@ -65,6 +79,9 @@ var userSchema = new mongoose.Schema({
   }
 
 });
+
+// enable mongodb full text search 
+userSchema.index({ name: "text", 'expertProfile.tags': 'text' });
 
 userSchema
   .virtual('password')
